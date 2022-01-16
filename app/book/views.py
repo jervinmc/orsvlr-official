@@ -71,6 +71,9 @@ class ConfirmedStatus(generics.GenericAPIView):
             elif(request.data.get('status')=='rejected'):
                 message = get_template('rejected.html').render({'code':request.data.get('code')})
             
+            elif(request.data.get('status')=='completed'):
+                message = get_template('completed.html').render({'code':request.data.get('code')})
+            
             # message = get_template('confirm.html').render({'code':request.data.get('code')})
             msg = EmailMultiAlternatives('Status', message,'vleonoradonotreply@gmail.com', [request.data.get('email')])
             html_content = '<p>This is an <strong>important</strong> message.</p>'
