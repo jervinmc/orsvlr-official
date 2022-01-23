@@ -16,6 +16,7 @@ urlpatterns = [
     path('api/v1/gallery/', include('gallery.urls')),
     path('api/v1/book/', include('book.urls')),
     path('api/v1/payment/', include('payment.urls')),
+    path('api/v1/promo/', include('promo.urls')),
     path('api/v1/amenities/', include('amenities.urls')),
      path('api/v1/code/code/', GetCode.as_view(), name='get_user'),
      path('api/v1/confirmed/status/', ConfirmedStatus.as_view(), name='get_user'),

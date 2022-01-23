@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'events',
     'gallery',
     'payment',
+    'promo',
     'amenities',
     'corsheaders',
 ]
