@@ -74,12 +74,18 @@ class ConfirmedStatus(generics.GenericAPIView):
             elif(request.data.get('status')=='completed'):
                 message = get_template('completed.html').render({'code':request.data.get('code')})
             
+            elif(request.data.get('status')=='pending'):
+                message = get_template('completed.html').render({'code':request.data.get('code')})
+            elif(request.data.get('status')=='archive'):
+                message = get_template('completed.html').render({'code':request.data.get('code')})
+            
             # message = get_template('confirm.html').render({'code':request.data.get('code')})
             msg = EmailMultiAlternatives('Status', message,'vleonoradonotreply@gmail.com', [request.data.get('email')])
             html_content = '<p>This is an <strong>important</strong> message.</p>'
             msg.content_subtype = "html"
             msg.send()
-            Book.objects.filter(id=request.data.get('id')).update(status=request.data.get('status'))
+            print(request.data.get('cancellation_description'))
+            Book.objects.filter(id=request.data.get('id')).update(status=request.data.get('status'),cancellation_description=request.data.get('cancellation_description'))
             return Response(status=status.HTTP_200_OK,data=[])
         except Exception as e:
             print(e)

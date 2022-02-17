@@ -54,7 +54,9 @@ INSTALLED_APPS = [
     'gallery',
     'payment',
     'promo',
+    'users',
     'amenities',
+    'logs',
     'corsheaders',
 ]
 

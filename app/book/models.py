@@ -32,6 +32,8 @@ class Book(models.Model):
     price=models.CharField(_('price'),max_length=255,blank=True,null=True)
     transaction_date=models.CharField(_('transaction_date'),max_length=255,blank=True,null=True)
     to_pay=models.CharField(_('to_pay'),max_length=255,blank=True,null=True)
+    cancellation_description=models.CharField(_('cancellation_description'),max_length=255,blank=True,null=True)
+    promoCode=models.CharField(_('promoCode'),max_length=255,blank=True,null=True)
     # transaction_date = models.DateTimeField(
     #     _('transaction_date'))
     status=models.CharField(_('status'),max_length=255,blank=True,null=True)
