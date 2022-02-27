@@ -18,6 +18,7 @@ class Rooms(models.Model):
     price=models.CharField(_('price'),max_length=255,blank=True,null=True)
     package=models.CharField(_('package'),max_length=255,blank=True,null=True)
     descriptions=models.CharField(_('descriptions'),max_length=255,blank=True,null=True)
+    features=models.CharField(_('features'),max_length=255,blank=True,null=True)
     image = models.ImageField(
         _('image'), upload_to=nameFile, default="uploads/pools.png")
 
