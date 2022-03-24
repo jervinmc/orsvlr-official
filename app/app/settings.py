@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'amenities',
     'logs',
     'corsheaders',
+    'content',
+    'settings',
 ]
 
 MIDDLEWARE = [
