@@ -24,6 +24,8 @@ class Book(models.Model):
     service_type=models.CharField(_('contact_number'),max_length=255,blank=True,null=True)
     date_start=models.DateField(_('date_start'),blank=True,null=True)
     date_end=models.DateField(_('date_end'),blank=True,null=True)
+    date_reschedule=models.DateField(_('date_reschedule'),blank=True,null=True)
+    reason_reschedule=models.CharField(_('reason_reschedule'),max_length=255,blank=True,null=True)
     descriptions=models.CharField(_('descriptions'),max_length=255,blank=True,null=True)
     code=models.CharField(_('code'),max_length=255,blank=True,null=True)
     subtype=models.CharField(_('subtype'),max_length=255,blank=True,null=True)

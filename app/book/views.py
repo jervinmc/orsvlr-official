@@ -55,6 +55,18 @@ class GetCode(generics.GenericAPIView):
             print(e)
             return Response(status=status.HTTP_404_NOT_FOUND,data=[])
 
+# class Reschedule(generics.GenericAPIView):
+#     queryset=Book.objects.all()
+#     serializer_class=BookSerializer
+#     def post(self,request,format=None):
+#         try:
+#             res = request.data
+#             items = 
+#         except Exception as e:
+#             print(e)
+#             return Response(status=status.HTTP_404_NOT_FOUND,data=[])
+
+
 class ConfirmedStatus(generics.GenericAPIView):
     queryset=Book.objects.all()
     serializer_class=BookSerializer
