@@ -30,7 +30,9 @@ SECRET_KEY = 'django-insecure-tc1z7+o(#kwbn%!7ow2@#s8&+((nfz)j)p_2o!3pnw+)5)p51k
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+import django.core.management.commands.runserver as runserver
 
+runserver.Command.default_port = config('WebServer_Port', default = "8080")
 ALLOWED_HOSTS = ['*']
 
 
