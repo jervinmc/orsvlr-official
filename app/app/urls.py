@@ -7,7 +7,7 @@ from drf_yasg import openapi
 from users.views import Login
 from ads.views import AdsBookID,AdsEditProduct
 from rest_framework import permissions
-from book.views import GetCode,ConfirmedStatus,OTP,BulkDeleteArchived,BulkSetCompleted
+from book.views import GetCode,ConfirmedStatus,OTP,BulkDeleteArchived,BulkSetCompleted,BulkSetArchived
 
 
 urlpatterns = [
@@ -28,8 +28,10 @@ urlpatterns = [
     path('api/v1/settings/', include('settings.urls')),
     path('api/v1/amenities/', include('amenities.urls')),
     path('api/v1/code/code/', GetCode.as_view(), name='get_user'),
+    
     path('api/v1/bulk-completed-book/', BulkSetCompleted.as_view(), name='get_user'),
-     
+    path('api/v1/bulk-archived-book/', BulkSetArchived.as_view(), name='get_user'),
+    
     path('api/v1/ads-edit/', AdsEditProduct.as_view(), name='get_user'),
     path('api/v1/bulk-delete-book/', BulkDeleteArchived.as_view(), name='get_user'),
     path('api/v1/otp/', OTP.as_view(), name='get_user'),

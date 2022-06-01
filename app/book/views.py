@@ -142,3 +142,15 @@ class BulkSetCompleted(generics.GenericAPIView):
         except Exception as e:
             print(e)
             return Response(status=status.HTTP_404_NOT_FOUND,data=[])
+
+
+class BulkSetArchived(generics.GenericAPIView):
+    def post(self,request,format=None):
+        try:
+            res = request.data
+            for x in res.get('items'):
+                Book.objects.filter(id=x['id']).update(status='archived')
+            return Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND,data=[])
