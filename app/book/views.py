@@ -102,3 +102,43 @@ class ConfirmedStatus(generics.GenericAPIView):
         except Exception as e:
             print(e)
             return Response(status=status.HTTP_404_NOT_FOUND,data=[])
+
+
+class OTP(generics.GenericAPIView):
+    def post(self,request,format=None):
+        try:
+            message = get_template('otp.html').render({"code":request.data.get('code')})
+            msg = EmailMultiAlternatives('OTP', message,'autootoncst@gmail.com', [request.data.get('email')])
+            html_content = '<p>This is an <strong>important</strong> message.</p>'
+            msg.content_subtype = "html"
+            msg.send()
+            return Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND,data=[])
+
+
+class BulkDeleteArchived(generics.GenericAPIView):
+    def post(self,request,format=None):
+        try:
+            print("nice")
+            res = request.data
+            for x in res.get('items'):
+                print(x)
+                Book.objects.filter(id=x['id']).delete()
+            return Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND,data=[])
+
+
+class BulkSetCompleted(generics.GenericAPIView):
+    def post(self,request,format=None):
+        try:
+            res = request.data
+            for x in res.get('items'):
+                Book.objects.filter(id=x['id']).update(status='completed')
+            return Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND,data=[])

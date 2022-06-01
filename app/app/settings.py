@@ -60,6 +60,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'content',
     'settings',
+    'ads',
+    'discount',
+    'faq'
 ]
 
 MIDDLEWARE = [
