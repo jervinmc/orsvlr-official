@@ -92,10 +92,12 @@ class ConfirmedStatus(generics.GenericAPIView):
                 message = get_template('completed.html').render({'code':request.data.get('code')})
             
             # message = get_template('confirm.html').render({'code':request.data.get('code')})
-            msg = EmailMultiAlternatives('Status', message,'vleonoradonotreply@gmail.com', [request.data.get('email')])
-            html_content = '<p>This is an <strong>important</strong> message.</p>'
-            msg.content_subtype = "html"
-            msg.send()
+            print(request.data.get('status'))
+            if(request.data.get('status')!='cancelled'):
+                msg = EmailMultiAlternatives('Status', message,'vleonoradonotreply@gmail.com', [request.data.get('email')])
+                html_content = '<p>This is an <strong>important</strong> message.</p>'
+                msg.content_subtype = "html"
+                msg.send()
             print(request.data.get('cancellation_description'))
             Book.objects.filter(id=request.data.get('id')).update(status=request.data.get('status'),cancellation_description=request.data.get('cancellation_description'))
             return Response(status=status.HTTP_200_OK,data=[])
@@ -109,6 +111,20 @@ class OTP(generics.GenericAPIView):
         try:
             message = get_template('otp.html').render({"code":request.data.get('code')})
             msg = EmailMultiAlternatives('OTP', message,'autootoncst@gmail.com', [request.data.get('email')])
+            html_content = '<p>This is an <strong>important</strong> message.</p>'
+            msg.content_subtype = "html"
+            msg.send()
+            return Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            print(e)
+            return Response(status=status.HTTP_404_NOT_FOUND,data=[])
+
+
+class GetInTouch(generics.GenericAPIView):
+    def post(self,request,format=None):
+        try:
+            message = get_template('getintouch.html').render({"fullname":request.data.get('fullname'),"contact_number":request.data.get('contact_number'),"email":request.data.get('email'),"message":request.data.get('message')})
+            msg = EmailMultiAlternatives('Get in Touch', message,'', ['villaleonora00@gmail.com'])
             html_content = '<p>This is an <strong>important</strong> message.</p>'
             msg.content_subtype = "html"
             msg.send()
