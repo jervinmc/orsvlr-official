@@ -6,6 +6,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from users.views import Login
 from ads.views import AdsBookID,AdsEditProduct
+from ad_pend.views import AdPendBookID
 from rest_framework import permissions
 from book.views import GetCode,ConfirmedStatus,OTP,BulkDeleteArchived,BulkSetCompleted,BulkSetArchived,GetInTouch
 
@@ -23,11 +24,14 @@ urlpatterns = [
     path('api/v1/promo/', include('promo.urls')),
     path('api/v1/content/', include('content.urls')),
     path('api/v1/users/', include('users.urls')),
+    path('api/v1/adpend/', include('ad_pend.urls')),
     path('api/v1/logs/', include('logs.urls')),
     path('api/v1/faq/', include('faq.urls')),
     path('api/v1/settings/', include('settings.urls')),
     path('api/v1/amenities/', include('amenities.urls')),
     path('api/v1/code/code/', GetCode.as_view(), name='get_user'),
+    path('api/v1/adpend-bookid/<str:book_id>/', AdPendBookID.as_view(), name='get_user'),
+    
     
     path('api/v1/bulk-completed-book/', BulkSetCompleted.as_view(), name='get_user'),
     path('api/v1/bulk-archived-book/', BulkSetArchived.as_view(), name='get_user'),

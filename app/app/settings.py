@@ -64,7 +64,8 @@ INSTALLED_APPS = [
     'settings',
     'ads',
     'discount',
-    'faq'
+    'faq',
+    'ad_pend',
 ]
 
 MIDDLEWARE = [
