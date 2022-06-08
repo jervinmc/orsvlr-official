@@ -25,11 +25,11 @@ class BookView(viewsets.ModelViewSet):
     def create(self,request):
         res = request.data
         print(res.get('transaction_date'))
-        message = get_template('mail.html').render({'code':request.data.get('code')})
-        msg = EmailMultiAlternatives('Status', message,'vleonoradonotreply@gmail.com', [res.get('email')])
-        html_content = '<p>This is an <strong>important</strong> message.</p>'
-        msg.content_subtype = "html"
-        msg.send()
+        # message = get_template('mail.html').render({'code':request.data.get('code')})
+        # msg = EmailMultiAlternatives('Status', message,'vleonoradonotreply@gmail.com', [res.get('email')])
+        # html_content = '<p>This is an <strong>important</strong> message.</p>'
+        # msg.content_subtype = "html"
+        # msg.send()
         serializer = BookSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -93,11 +93,11 @@ class ConfirmedStatus(generics.GenericAPIView):
             
             # message = get_template('confirm.html').render({'code':request.data.get('code')})
             print(request.data.get('status'))
-            if(request.data.get('status')!='cancelled'):
-                msg = EmailMultiAlternatives('Status', message,'vleonoradonotreply@gmail.com', [request.data.get('email')])
-                html_content = '<p>This is an <strong>important</strong> message.</p>'
-                msg.content_subtype = "html"
-                msg.send()
+            # if(request.data.get('status')!='cancelled'):
+            #     msg = EmailMultiAlternatives('Status', message,'vleonoradonotreply@gmail.com', [request.data.get('email')])
+            #     html_content = '<p>This is an <strong>important</strong> message.</p>'
+            #     msg.content_subtype = "html"
+            #     msg.send()
             print(request.data.get('cancellation_description'))
             Book.objects.filter(id=request.data.get('id')).update(status=request.data.get('status'),cancellation_description=request.data.get('cancellation_description'))
             return Response(status=status.HTTP_200_OK,data=[])
